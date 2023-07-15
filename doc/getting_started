@@ -1,0 +1,244 @@
+#CoderComm
+CoderComm is a social network that allows peopel to join by creating account. Each User should provide a name,
+an email, and password to create an account. The email address should not link to any account in the system.
+
+After joining CoderComm, users can update their profile info like Avartar, Company JobTitle, Social,Links, and a Short description about themselves.
+
+User can write Posts that Contain text content and an image. The new Post will be shown on the user Profile page, allowing other users to connect, Users Can also react with like or dislike on a post or a comment.
+
+user can send friend request to other users who have an open relationship with them. Users can accept or decline a friend request. After accepting a friend request. both become friends, and they can see posts of each other.
+
+## User Stories
+
+### Authentication
+
+-[] As a user, I can register for a new account with my name, email and password
+-[] As a user, I can sign in with my email and PassWord
+
+### Users
+
+-[] As a user, I can see a list of other users that i can see, accept, or decline friend requests.
+
+- [] As a user, I can get my current profile info (stay signed in after page refresh)
+  -[] As a user, I can see the profile of a specific user given a user ID
+- [] As a user, I can update my profile info like Avatar, company, job title, social links, and short description.
+
+### Post
+
+-[] As a user, I can see a list of post.
+
+- [] As a user, I can creat new post with text content and a image
+- [] As a user, I can edit my posts.
+- [] As a user, I can delete my Posts.
+
+### Comments
+
+-[] As a user, I can see a list of comment on a post
+-[] As a user, I can write comments on a post
+-[] As a user, I can update my comments
+-[] As a user, I can delelte my comments
+
+### Reactions
+
+- [] As a user, I can react like or dislike a post or comment
+
+### Friends
+
+- [] As a user, I can send a request to another user who is not my friend.
+- [] As a user, I can see a list of friend requests i have recevice
+- [] As a user, I can see a list of friend request i have sent
+- [] As a user, I can see a list of my friend
+- [] As a user, I can accept or decline a friend request i sent
+- [] As a user, i can unfriend a user in my friend list
+- [] As a user, i can cancel a friend request I sent.
+
+## Endpoint APIs
+
+### Auth APIs
+
+```javascript
+/**
+ * @route POST/auth/Login
+ * @description login with email and password
+ * @body {email,password}
+ * @access Public
+ */
+```
+
+### User APIs
+```javascript
+/**
+ * @route POST/users
+ * @description register new user
+ * @body {name, email,password}
+ * @access Public
+ */
+```
+```javascript
+/**
+ * @route GET/users/page=1&limit=10
+ * @description get users with pagination
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route GET/users/me
+ * @description get current user info
+ * @access login required
+ */
+```
+```javascript
+/**
+ * @route GET/users/:id
+ * @description get a user profile 
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route PUT/users/:id
+ * @description Update user Profile 
+ * @body {name, avatar, coverUrl,city,country, ........}
+ * @access Login required.
+ */
+```
+### Post APIs
+```javascript
+/**
+ * @route GET/posts/user/:userId/page=1&limit=10
+ * @description Get all posts an user can see with pagination
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route POST/posts
+ * @description Create a new Post
+ * @body {content, image}
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route PUT/posts/:postId
+ * @description Update a post
+ * @body {content, image}
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route Delete/posts/:postId
+ * @description Delete a post 
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route GET/posts/:postId
+ * @description Get single post
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route GET/posts/:postId/comments
+ * @description Create comment of a post
+ * @access Login required
+ */
+```
+### Commnet APIs
+```javascript
+/**
+ * @route POST/comments
+ * @description Create a new comment
+ * @body {content, postId}
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route PUT/comments/:commentId
+ * @description Update a comment
+ * @body {content}
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route Delete/comments/:commentId
+ * @description Delete a comment
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route GET/comments/:commentId
+ * @description Get detail of a comment
+ * @access Login required
+ */
+```
+
+### Reaction APIs
+```javascript
+/**
+ * @route POST/reactions
+ * @description Save a reaction to post or comment
+ * @body {targetType:"Post", "Comment", targetId, emoji:"like" or "dislike"}
+ * @access Login required
+ */
+```
+
+### Friend APIs
+```javascript
+/**
+ * @route POST/friends/requests
+ * @description Send a friend request
+ * @body {to User ID}
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route GET/friends/requests/incoming
+ * @description Get the list of received pending requests
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route GET/friends/requests/outgoing
+ * @description Get the list of sent pending requests
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route Get/friends
+ * @description Get the list of friends
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route PUT/friends/requests/:userId
+ * @description Accept/Reject a received pending requests
+ * @body {status: "accepted" or "declined"}
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route DELETE/friends/requests/:userId
+ * @description cancel a friends request
+ * @access Login required
+ */
+```
+```javascript
+/**
+ * @route DELETE/friends/:userId
+ * @description Remove a friend
+ * @access Login required
+ */
+```
