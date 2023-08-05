@@ -18,7 +18,7 @@ const reactionsApi = require("./reactions.api");
 router.use("/reactions", reactionsApi);
 //friendsApi
 const friendsApi = require("./friends.api");
-router.use("./friends", friendsApi);
+router.use("/friends", friendsApi);
 
 module.exports = router;
 

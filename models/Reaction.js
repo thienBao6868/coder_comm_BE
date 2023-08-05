@@ -12,12 +12,12 @@ const reactionSchema = Schema(
     targetId: {
       type: Schema.Types.ObjectId,
       required: true,
-      refPath: "targetType",
+      refPath: "targetType", // dua theo targetType la Post or Comment ma no refPath den model Post or Comment 
     },
     emoji: {
       type: String,
       required: true,
-      enum: ["like,dislike"],
+      enum: ["like","dislike"],
     },
   },
   { timestamps: true }

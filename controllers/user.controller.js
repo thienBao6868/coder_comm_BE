@@ -141,7 +141,7 @@ userController.updateProfile = catchAsync(async (req, res, next) => {
   await user.save();
 
   //Response
-  sendResponse(res, 200, true, user, null, "update User User Successful");
+  sendResponse(res, 200, true, user, null, "update User Successful");
 });
 
 module.exports = userController;
